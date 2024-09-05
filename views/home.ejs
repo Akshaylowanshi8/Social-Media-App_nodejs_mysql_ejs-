@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<style>
+    .card-img {
+        max-height: 300px;
+        object-fit: cover;
+    }
+    .card-body {
+        text-align: center;
+  
+    }
+.post{
+width: 100%;
+height: auto;
+background: #fff;
+border: 1px solid #dfdfdf;
+margin-top: 40px;
+}
+
+.info{
+width: 100%;
+height: 60px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 20px;
+}
+
+.info .username{
+width: auto;
+font-weight: bold;
+color: #000;
+font-size: 14px;
+margin-left: 10px;
+}
+
+.info .options{
+height: 10px;
+cursor: pointer;
+}
+
+.info .user{
+display: flex;
+align-items: center;
+}
+
+.info .profile-pic{
+height: 40px;
+width: 40px;
+padding: 0;
+background: none;
+}
+
+.info .profile-pic img{
+border: none;
+}
+
+.post-image{
+width: 100%;
+height:auto;
+object-fit: cover;
+}
+
+.post-content{
+width: 100%;
+padding: 20px;
+}
+
+.likes{
+font-weight: bold;
+}
+
+.description{
+margin: 10px 0;
+font-size: 14px;
+line-height: 20px;
+}
+
+.description span{
+font-weight: bold;
+margin-right: 10px;
+}
+
+.post-time{
+color: rgba(0, 0, 0, 0.5);
+font-size: 12px;
+}
+
+.comment-wrapper{
+width: 100%;
+height: 50px;
+border-radius: 1px solid #dfdfdf;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 10px;
+}
+
+.comment-wrapper .icon{
+height: 30px;
+margin: 10px;
+}
+
+.comment-box{
+width: 80%;
+height: 100%;
+outline: none;
+font-size: 14px;
+border: none;
+box-shadow: #000 0px 0px 2px 0px ;
+border-radius: 30px;
+padding: 8px;
+
+}
+
+.comment-btn,
+.action-btn{
+width: 70px;
+height: 100%;
+background: none;
+border: none;
+outline: none;
+text-transform: capitalize;
+font-size: 16px;
+color: rgb(0, 162, 255);
+opacity: 0.5;
+background-color: #3297f5;
+}
+
+.reaction-wrapper{
+width: 100%;
+height: 50px;
+display: flex;
+margin-top: -20px;
+align-items: center;
+}
+
+.reaction-wrapper .icon{
+height: 25px;
+margin: 0;
+margin-right: 20px;
+}
+
+.reaction-wrapper .icon.save{
+margin-left: auto;
+}
+
+.comments{
+margin: 30px;
+    
+}
+/* From Uiverse.io by Codecite */ 
+.btn {
+  transition: all 0.3s ease-in-out;
+  font-family: "Dosis", sans-serif;
+}
+
+.btn {
+  width: 140px;
+  height: 50px;
+  margin-right: 18px;
+  border-radius: 50px;
+  background-image: linear-gradient(135deg, #5d2fdb 0%, #4245ee 100%);
+  box-shadow: 0 20px 30px -6px rgba(142, 197, 243, 0.5);
+  outline: none;
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  color: white;
+  /* margin: 10px; */
+}
+
+.btn:hover {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.btn:active {
+  opacity: 0.5;
+}
+</style>
+<body>
+    <%- include("include/header");-%>
+
+<h1>
+<h1  hidden  id="idd"> <%= username %></h1>
+</h1>
+
+<div class="box">
+    <div class="container mt-5">
+        <div class="box">
+            <% if (posts && posts.length > 0) { %>
+                <%posts.forEach(post => { %> 
+              <section  class="main" >
+                    <div class="wrapper">
+                        <div class="left-col">
+                            <div class="post">
+                                <div class="info">
+                                    <div class="user">
+                                        <div class="profile-pic"><img src="\images\cover 1.png" alt=""></div>
+                                        <p class="username"><%=post.user.name %></p>
+                                    </div>
+                                    <img src="img/option.PNG" class="options" alt=""><i class="fa-solid fa-ellipsis"></i>
+                                </div>
+                                <img src="\images\<%= post.name %>" class="post-image" alt="coming">
+                                <div class="post-content">
+                                    <div class="reaction-wrapper">
+                                        <img src="\images\like.PNG" class="icon" alt="">
+                                        <img src="\images\comment.PNG" class="icon" alt="">
+                                        <img src="\images\send.PNG" class="icon" alt="">
+                                        <img src="\images\save.PNG" class="save icon" alt="">
+                                    </div>
+                                    <p class="likes">1,012 likes</p>
+                                    <p class="description"><span>   <%= post.Description %>   </span><%=post.Comment.content %></p>
+                                    <p class="post-time"><%= new Date(post.createdAt).toLocaleString() %></p>
+                                </div>
+
+
+                                <% if (post.Comment.length > 0) { %>
+                                    <div  class="comments">
+                                        <strong>Comments:</strong>
+                                        <% post.Comment.forEach(function(comment) { %>
+                                            <div class="comment">
+                                                <p  class=""><strong><%= comment.user.name %></strong>: <%= comment.content %></p>
+                                                <p class="post-time">Posted at: <%= new Date(comment.createdAt).toLocaleString() %></p>
+                                            </div>
+                                        <% }); %>
+                                    </div>
+                                <% } %>
+                           <form action="/user/newComment"   method="post">
+                                <div class="comment-wrapper">
+                                    <img src="\images\smile.PNG" class="icon" alt="">
+                                   
+                                    <input type="text" class="comment-box" name="content" placeholder="Add a comment">
+                                     <input type="hidden"  value="<%=post.id%>" name="postId">
+                                    <button type="submit" class="btn">add</button>
+                                
+                                </div>
+                            </form>
+                            </div>     
+                        </div>
+                    </div>
+                </section>
+                <% }) %>
+            <% } else { %>
+                <p>No posts available.</p>
+            <% } %>
+        </div>
+    </div>
+  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+         const username = document.getElementById('idd').innerHTML
+if(username.trim() !== ""){
+      localStorage.setItem('username', JSON.stringify(username));
+            console.log('username saved to localStorage!');
+}
+        });
+    </script>
+</body>
+</html>

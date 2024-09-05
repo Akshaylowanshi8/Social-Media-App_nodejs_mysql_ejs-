@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new post </title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body>
+  <%- include("include/header");-%>
+  <form 
+
+  action="/user/uploadPost"
+  method="POST"
+  enctype="multipart/form-data"
+  class="bg-white shadow-lg border border-gray-400 rounded-2xl p-8 text-center text-lg max-w-xs mx-auto  text-center  m-28">
+    <span class="text-black text-2xl font-medium">Upload your Post</span>
+    <p class="mt-2 text-sm text-gray-600">File should be an image</p>
+    <label for="file-input" class="flex flex-col items-center justify-center gap-2 bg-white border-2 border-blue-200 border-dashed rounded-lg p-4 mt-8 text-gray-600 cursor-pointer transition-colors duration-200 ease-in-out hover:bg-blue-100 hover:border-gray-600">
+      <span class="text-gray-600 text-xl font-bold">Drop image  here</span>
+      or  select 
+       <input
+        type="file"
+        name="file"
+        id="file-input"
+        class="ml-28"
+        accept="image/*"
+        required
+      >
+    </label>
+    <div class="mt-4">
+      <label for="Description" class="block text-left text-gray-700">
+        Description</label>
+      <textarea
+        id="Description"
+        name="Description"
+        rows="4"
+        class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+        placeholder="Enter your Description"
+        required
+      ></textarea>
+      <label for="type">Choose a status:</label>
+      <select name="type" id="type">
+        <option value="public">Everyone can view</option>
+        <option value="private">Only me</option>
+      </select>
+    </div>
+    <button type="submit" class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 ease-in-out">Submit</button>
+  </form>
+  
+    </div>
+</body>
+</html>
